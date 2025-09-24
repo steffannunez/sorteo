@@ -1,7 +1,7 @@
 <template>
   <BaseCard class="max-w-md mx-auto">
     <template #header>
-      <h2 class="text-xl font-semibold text-gray-900 text-center">
+      <h2 class="text-xl font-semibold text-gris-oscuro text-center">
         Comprar Número
       </h2>
     </template>
@@ -20,39 +20,39 @@
       />
       
       <div>
-        <label class="text-sm font-medium text-gray-700 mb-2 block">
+        <label class="text-sm font-medium text-gris-oscuro mb-2 block">
           Método de Pago
         </label>
         <div class="space-y-2">
           <label 
             v-for="metodo in metodosPago" 
             :key="metodo.value"
-            class="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50"
-            :class="{ 'border-primary-500 bg-primary-50': form.metodoPago === metodo.value }"
+            class="flex items-center space-x-3 p-3 border border-gris-medio rounded-lg cursor-pointer hover:bg-gris-claro"
+            :class="{ 'border-dorado bg-dorado/10': form.metodoPago === metodo.value }"
           >
             <input
               v-model="form.metodoPago"
               type="radio"
               :value="metodo.value"
-              class="text-primary-600 focus:ring-primary-500"
+              class="text-dorado focus:ring-dorado"
             />
             <div class="flex items-center space-x-2">
               <i :class="metodo.icon" class="text-lg"></i>
-              <span class="font-medium">{{ metodo.label }}</span>
+              <span class="font-medium text-gris-oscuro">{{ metodo.label }}</span>
             </div>
           </label>
         </div>
         <p v-if="errors.metodoPago" class="text-sm text-red-600 mt-1">{{ errors.metodoPago }}</p>
       </div>
       
-      <div class="bg-gray-50 p-4 rounded-lg">
+      <div class="bg-gris-claro p-4 rounded-lg">
         <div class="flex justify-between items-center">
-          <span class="text-sm text-gray-600">Precio por número:</span>
-          <span class="font-semibold">${{ precioFormateado }}</span>
+          <span class="text-sm text-gris-medio">Precio por número:</span>
+          <span class="font-semibold text-gris-oscuro">${{ precioFormateado }}</span>
         </div>
         <div class="flex justify-between items-center mt-2">
-          <span class="text-sm text-gray-600">Total a pagar:</span>
-          <span class="text-lg font-bold text-primary-600">${{ precioFormateado }}</span>
+          <span class="text-sm text-gris-medio">Total a pagar:</span>
+          <span class="text-lg font-bold text-dorado">${{ precioFormateado }}</span>
         </div>
       </div>
       

@@ -4,11 +4,11 @@
 
 @layer base {
   * {
-    @apply border-gray-200;
+    @apply border-gris-medio;
   }
   
   body {
-    @apply bg-white text-gray-900;
+    @apply bg-gris-oscuro text-blanco-calido;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }

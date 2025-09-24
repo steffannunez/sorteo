@@ -1,7 +1,7 @@
 <template>
   <BaseCard class="max-w-md mx-auto">
     <template #header>
-      <h2 class="text-xl font-semibold text-gray-900 text-center">
+      <h2 class="text-xl font-semibold text-gris-oscuro text-center">
         Iniciar Sesión
       </h2>
     </template>

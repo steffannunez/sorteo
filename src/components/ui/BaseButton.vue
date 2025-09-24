@@ -33,15 +33,15 @@ const emit = defineEmits<{
 }>()
 
 const buttonClasses = computed(() => {
-  const baseClasses = 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
+  const baseClasses = 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dorado focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
   
   const variantClasses = {
-    default: 'bg-primary-600 text-white hover:bg-primary-700',
+    default: 'bg-gradient-dorado text-gris-medio hover:bg-gradient-dorado-hover font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105',
     destructive: 'bg-red-600 text-white hover:bg-red-700',
-    outline: 'border border-gray-300 bg-transparent hover:bg-gray-50',
-    secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-    ghost: 'hover:bg-gray-100',
-    link: 'underline-offset-4 hover:underline text-primary-600',
+    outline: 'border border-gris-medio bg-transparent text-blanco-calido hover:bg-gris-claro hover:text-gris-oscuro',
+    secondary: 'bg-gris-claro text-gris-oscuro hover:bg-gris-claro/80',
+    ghost: 'text-gris-medio hover:bg-gris-claro hover:text-gris-oscuro',
+    link: 'underline-offset-4 hover:underline text-dorado',
   }
   
   const sizeClasses = {

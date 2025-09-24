@@ -1,26 +1,26 @@
 <template>
   <BaseCard class="text-center">
     <template #header>
-      <h3 class="text-lg font-semibold text-gray-900">Monto Acumulado</h3>
+      <h3 class="text-lg font-semibold text-gris-oscuro">Monto Acumulado</h3>
     </template>
     
     <div class="space-y-4">
-      <div class="text-4xl font-bold text-primary-600">
+      <div class="text-4xl font-bold text-dorado">
         {{ montoFormateado }}
       </div>
       
-      <div class="text-sm text-gray-600">
+      <div class="text-sm text-gris-medio">
         {{ numerosVendidosCount }} números vendidos de {{ totalNumeros }}
       </div>
       
-      <div class="w-full bg-gray-200 rounded-full h-2">
+      <div class="w-full bg-gris-medio rounded-full h-2">
         <div 
-          class="bg-primary-600 h-2 rounded-full transition-all duration-300"
+          class="bg-dorado h-2 rounded-full transition-all duration-300"
           :style="{ width: `${porcentajeVendido}%` }"
         ></div>
       </div>
       
-      <div class="text-sm text-gray-500">
+      <div class="text-sm text-gris-medio">
         {{ porcentajeVendido.toFixed(1) }}% vendido
       </div>
     </div>

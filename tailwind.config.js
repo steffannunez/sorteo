@@ -7,33 +7,48 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Gris Oscuro Principal (Base)
+        'gris-oscuro': '#212121',
+        // Dorado Brillante (Acento Principal)
+        'dorado': '#D4AF37',
+        // Blanco Cálido (Texto y Contenido Principal)
+        'blanco-calido': '#F8F8F8',
+        // Gris Medio (Elementos Secundarios)
+        'gris-medio': '#616161',
+        // Gris Claro (Fondo Secundario o Destacado)
+        'gris-claro': '#E0E0E0',
+        // Colores adicionales para compatibilidad
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#1c1c1c',
-          700: '#000000',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#F8F8F8',   // blanco-calido
+          100: '#E0E0E0',  // gris-claro
+          200: '#E0E0E0',  // gris-claro
+          300: '#616161',  // gris-medio
+          400: '#616161',  // gris-medio
+          500: '#D4AF37',  // dorado
+          600: '#D4AF37',  // dorado
+          700: '#212121',  // gris-oscuro
+          800: '#212121',  // gris-oscuro
+          900: '#212121',  // gris-oscuro
         },
         secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#F8F8F8',   // blanco-calido
+          100: '#E0E0E0',  // gris-claro
+          200: '#E0E0E0',  // gris-claro
+          300: '#616161',  // gris-medio
+          400: '#616161',  // gris-medio
+          500: '#616161',  // gris-medio
+          600: '#616161',  // gris-medio
+          700: '#212121',  // gris-oscuro
+          800: '#212121',  // gris-oscuro
+          900: '#212121',  // gris-oscuro
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      backgroundImage: {
+        'gradient-dorado': 'linear-gradient(135deg,rgb(192, 150, 12) 0%,rgb(255, 233, 107) 50%,rgb(233, 154, 7) 100%)',
+        'gradient-dorado-hover': 'linear-gradient(135deg, #B8941F 0%, #E6C200 50%, #E69400 100%)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
