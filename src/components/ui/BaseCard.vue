@@ -1,12 +1,12 @@
 <template>
   <div :class="cardClasses">
-    <div v-if="$slots.header" class="px-6 py-4 border-b border-gris-medio">
+    <div v-if="$slots.header" class="px-6 py-4 border-b border-bordes bg-gradient-to-r from-dorado-claro/20 to-transparent">
       <slot name="header" />
     </div>
     <div class="p-6">
       <slot />
     </div>
-    <div v-if="$slots.footer" class="px-6 py-4 border-t border-gris-medio bg-gris-claro">
+    <div v-if="$slots.footer" class="px-6 py-4 border-t border-bordes bg-crema">
       <slot name="footer" />
     </div>
   </div>
@@ -26,14 +26,14 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const cardClasses = computed(() => {
-  const baseClasses = 'rounded-lg border bg-gris-claro text-gris-oscuro shadow-sm'
-  
+  const baseClasses = 'rounded-xl border bg-blanco-puro text-texto-principal shadow-sm backdrop-blur-sm'
+
   const variants = {
-    default: 'border-gris-medio',
-    elevated: 'border-gris-medio shadow-lg',
-    outlined: 'border-gris-medio shadow-none',
+    default: 'border-bordes shadow-md',
+    elevated: 'border-dorado-claro shadow-xl shadow-dorado-claro/20',
+    outlined: 'border-dorado shadow-none',
   }
-  
+
   return cn(baseClasses, variants[props.variant], props.class)
 })
 </script>
