@@ -4,12 +4,14 @@
 
 @layer base {
   * {
-    @apply border-gris-medio;
+    @apply border-bordes;
   }
-  
+
   body {
-    @apply bg-gris-oscuro text-blanco-calido;
+    @apply bg-crema text-texto-principal;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: linear-gradient(to bottom, #FDFCF9 0%, #F5F2EB 100%);
+    min-height: 100vh;
   }
 }
 

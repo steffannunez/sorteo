@@ -7,48 +7,63 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Gris Oscuro Principal (Base)
-        'gris-oscuro': '#212121',
-        // Dorado Brillante (Acento Principal)
-        'dorado': '#D4AF37',
-        // Blanco Cálido (Texto y Contenido Principal)
-        'blanco-calido': '#F8F8F8',
-        // Gris Medio (Elementos Secundarios)
-        'gris-medio': '#616161',
-        // Gris Claro (Fondo Secundario o Destacado)
-        'gris-claro': '#E0E0E0',
+        // Paleta Blanco & Dorado Premium
+        // Fondo principal - Blanco crema cálido
+        'crema': '#FDFCF9',
+        // Dorado Champagne (Acento Principal)
+        'dorado': '#C9A961',
+        // Dorado Antiguo (Dorado Oscuro)
+        'dorado-oscuro': '#8B7355',
+        // Champagne Claro (Dorado Suave)
+        'dorado-claro': '#E8D7B7',
+        // Texto Principal - Gris Oscuro
+        'texto-principal': '#2D2D2D',
+        // Texto Secundario - Gris Medio
+        'texto-secundario': '#6B6B6B',
+        // Bordes y Divisores - Beige Claro
+        'bordes': '#E8E4DD',
+        // Blanco puro para contraste
+        'blanco-puro': '#FFFFFF',
+
+        // Colores legacy (mantenidos para compatibilidad)
+        'gris-oscuro': '#2D2D2D',
+        'blanco-calido': '#FDFCF9',
+        'gris-medio': '#6B6B6B',
+        'gris-claro': '#E8E4DD',
+
         // Colores adicionales para compatibilidad
         primary: {
-          50: '#F8F8F8',   // blanco-calido
-          100: '#E0E0E0',  // gris-claro
-          200: '#E0E0E0',  // gris-claro
-          300: '#616161',  // gris-medio
-          400: '#616161',  // gris-medio
-          500: '#D4AF37',  // dorado
-          600: '#D4AF37',  // dorado
-          700: '#212121',  // gris-oscuro
-          800: '#212121',  // gris-oscuro
-          900: '#212121',  // gris-oscuro
+          50: '#FDFCF9',   // crema
+          100: '#F5F2EB',  // crema más oscuro
+          200: '#E8D7B7',  // dorado-claro
+          300: '#C9A961',  // dorado
+          400: '#C9A961',  // dorado
+          500: '#C9A961',  // dorado
+          600: '#8B7355',  // dorado-oscuro
+          700: '#6B6B6B',  // texto-secundario
+          800: '#2D2D2D',  // texto-principal
+          900: '#2D2D2D',  // texto-principal
         },
         secondary: {
-          50: '#F8F8F8',   // blanco-calido
-          100: '#E0E0E0',  // gris-claro
-          200: '#E0E0E0',  // gris-claro
-          300: '#616161',  // gris-medio
-          400: '#616161',  // gris-medio
-          500: '#616161',  // gris-medio
-          600: '#616161',  // gris-medio
-          700: '#212121',  // gris-oscuro
-          800: '#212121',  // gris-oscuro
-          900: '#212121',  // gris-oscuro
+          50: '#FDFCF9',   // crema
+          100: '#E8E4DD',  // bordes
+          200: '#E8E4DD',  // bordes
+          300: '#6B6B6B',  // texto-secundario
+          400: '#6B6B6B',  // texto-secundario
+          500: '#6B6B6B',  // texto-secundario
+          600: '#2D2D2D',  // texto-principal
+          700: '#2D2D2D',  // texto-principal
+          800: '#2D2D2D',  // texto-principal
+          900: '#2D2D2D',  // texto-principal
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'gradient-dorado': 'linear-gradient(135deg,rgb(192, 150, 12) 0%,rgb(255, 233, 107) 50%,rgb(233, 154, 7) 100%)',
-        'gradient-dorado-hover': 'linear-gradient(135deg, #B8941F 0%, #E6C200 50%, #E69400 100%)',
+        'gradient-dorado': 'linear-gradient(135deg, #C9A961 0%, #E8D7B7 50%, #C9A961 100%)',
+        'gradient-dorado-hover': 'linear-gradient(135deg, #8B7355 0%, #C9A961 50%, #8B7355 100%)',
+        'gradient-dorado-sutil': 'linear-gradient(to bottom, #FDFCF9 0%, #F5F2EB 100%)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

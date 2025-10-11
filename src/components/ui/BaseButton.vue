@@ -33,24 +33,24 @@ const emit = defineEmits<{
 }>()
 
 const buttonClasses = computed(() => {
-  const baseClasses = 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dorado focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
-  
+  const baseClasses = 'inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dorado focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
+
   const variantClasses = {
-    default: 'bg-gradient-dorado text-gris-medio hover:bg-gradient-dorado-hover font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105',
-    destructive: 'bg-red-600 text-white hover:bg-red-700',
-    outline: 'border border-gris-medio bg-transparent text-blanco-calido hover:bg-gris-claro hover:text-gris-oscuro',
-    secondary: 'bg-gris-claro text-gris-oscuro hover:bg-gris-claro/80',
-    ghost: 'text-gris-medio hover:bg-gris-claro hover:text-gris-oscuro',
-    link: 'underline-offset-4 hover:underline text-dorado',
+    default: 'bg-gradient-dorado text-blanco-puro hover:bg-gradient-dorado-hover font-semibold shadow-lg hover:shadow-xl hover:shadow-dorado/30 transform hover:scale-[1.02] border border-dorado-oscuro/20',
+    destructive: 'bg-red-500 text-white hover:bg-red-600 shadow-md hover:shadow-lg',
+    outline: 'border-2 border-dorado bg-transparent text-dorado hover:bg-dorado hover:text-blanco-puro shadow-sm hover:shadow-md',
+    secondary: 'bg-dorado-claro text-texto-principal hover:bg-dorado-claro/80 shadow-sm',
+    ghost: 'text-texto-secundario hover:bg-dorado-claro/30 hover:text-dorado-oscuro',
+    link: 'underline-offset-4 hover:underline text-dorado hover:text-dorado-oscuro',
   }
-  
+
   const sizeClasses = {
-    default: 'h-10 py-2 px-4',
-    sm: 'h-9 px-3 rounded-md',
-    lg: 'h-11 px-8 rounded-md',
+    default: 'h-11 py-2.5 px-5',
+    sm: 'h-9 px-3 text-xs',
+    lg: 'h-12 px-8 text-base',
     icon: 'h-10 w-10',
   }
-  
+
   return cn(
     baseClasses,
     variantClasses[props.variant],
