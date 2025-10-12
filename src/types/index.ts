@@ -76,6 +76,13 @@ export interface AppState {
 // Tipos para formularios
 export interface LoginForm {
   email: string
+  password: string
+}
+
+export interface RegisterForm {
+  email: string
+  password: string
+  confirmPassword: string
   nombre: string
   rut: string
   telefono: string
@@ -100,4 +107,45 @@ export interface CountdownData {
   minutos: number
   segundos: number
   total: number
+}
+
+// Tipos para el perfil de usuario
+export interface HistorialCompra {
+  id: string
+  sorteoId: string
+  numero: number
+  fechaCompra: Date
+  montoPagado: number
+  metodoPago: 'paypal' | 'mercadopago' | 'stripe'
+  estadoPago: 'pendiente' | 'pagado' | 'rechazado'
+  transaccionId: string
+  estadoSorteo: 'en_curso' | 'finalizado'
+  esGanador?: boolean
+  montoGanado?: number
+}
+
+export interface NotificationPreferences {
+  emailNotifications: boolean
+  sorteoNotifications: boolean
+  ganadoresNotifications: boolean
+  promocionesNotifications: boolean
+}
+
+export interface UserStats {
+  totalGanado: number
+  sorteosParticipados: number
+  numerosComprados: number
+  premiosGanados: number
+}
+
+export interface UpdateProfileRequest {
+  nombre?: string
+  telefono?: string
+  avatarUrl?: string
+}
+
+export interface ChangePasswordRequest {
+  currentPassword: string
+  newPassword: string
+  confirmPassword: string
 }

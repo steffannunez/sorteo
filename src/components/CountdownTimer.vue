@@ -1,30 +1,30 @@
 <template>
   <div class="text-center">
-    <h2 class="text-2xl font-bold text-blanco-calido mb-4">
+    <h2 class="text-3xl font-bold text-texto-principal mb-6">
       Tiempo restante para el sorteo
     </h2>
-    
-    <div v-if="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto">
-      <div class="bg-dorado text-gris-oscuro rounded-lg p-4 shadow-lg">
-        <div class="text-2xl font-bold">{{ countdown.dias }}</div>
-        <div class="text-sm opacity-90">Días</div>
+
+    <div v-if="countdown" class="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
+      <div class="bg-gradient-to-br from-dorado via-dorado-claro to-dorado text-blanco-puro rounded-xl p-6 shadow-xl shadow-dorado/30 border border-dorado-oscuro/20 transform hover:scale-105 transition-all duration-300">
+        <div class="text-4xl font-bold mb-1">{{ countdown.dias }}</div>
+        <div class="text-sm font-medium opacity-90">Días</div>
       </div>
-      <div class="bg-dorado text-gris-oscuro rounded-lg p-4 shadow-lg">
-        <div class="text-2xl font-bold">{{ countdown.horas }}</div>
-        <div class="text-sm opacity-90">Horas</div>
+      <div class="bg-gradient-to-br from-dorado via-dorado-claro to-dorado text-blanco-puro rounded-xl p-6 shadow-xl shadow-dorado/30 border border-dorado-oscuro/20 transform hover:scale-105 transition-all duration-300">
+        <div class="text-4xl font-bold mb-1">{{ countdown.horas }}</div>
+        <div class="text-sm font-medium opacity-90">Horas</div>
       </div>
-      <div class="bg-dorado text-gris-oscuro rounded-lg p-4 shadow-lg">
-        <div class="text-2xl font-bold">{{ countdown.minutos }}</div>
-        <div class="text-sm opacity-90">Minutos</div>
+      <div class="bg-gradient-to-br from-dorado via-dorado-claro to-dorado text-blanco-puro rounded-xl p-6 shadow-xl shadow-dorado/30 border border-dorado-oscuro/20 transform hover:scale-105 transition-all duration-300">
+        <div class="text-4xl font-bold mb-1">{{ countdown.minutos }}</div>
+        <div class="text-sm font-medium opacity-90">Minutos</div>
       </div>
-      <div class="bg-dorado text-gris-oscuro rounded-lg p-4 shadow-lg">
-        <div class="text-2xl font-bold">{{ countdown.segundos }}</div>
-        <div class="text-sm opacity-90">Segundos</div>
+      <div class="bg-gradient-to-br from-dorado via-dorado-claro to-dorado text-blanco-puro rounded-xl p-6 shadow-xl shadow-dorado/30 border border-dorado-oscuro/20 transform hover:scale-105 transition-all duration-300">
+        <div class="text-4xl font-bold mb-1">{{ countdown.segundos }}</div>
+        <div class="text-sm font-medium opacity-90">Segundos</div>
       </div>
     </div>
-    
-    <div v-else class="text-gris-medio">
-      <p class="text-lg">El sorteo ha finalizado</p>
+
+    <div v-else class="text-texto-secundario">
+      <p class="text-lg font-medium">El sorteo ha finalizado</p>
     </div>
   </div>
 </template>

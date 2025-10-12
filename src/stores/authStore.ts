@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { User, LoginForm } from '@/types'
+import type { User, LoginForm, RegisterForm } from '@/types'
 import { AuthService } from '@/services/AuthService'
 import { ApiClient } from '@/services/ApiClient'
 
@@ -32,14 +32,37 @@ export const useAuthStore = defineStore('auth', {
       try {
         const apiClient = new ApiClient()
         const authService = new AuthService(apiClient)
-        
+
         const response = await authService.login(userData)
-        
+
         if (response.success && response.data) {
           this.user = response.data
           this.isAuthenticated = true
         } else {
           this.error = response.error || 'Error al iniciar sesión'
+        }
+      } catch (error) {
+        this.error = error instanceof Error ? error.message : 'Error desconocido'
+      } finally {
+        this.loading = false
+      }
+    },
+
+    async register(userData: RegisterForm) {
+      this.loading = true
+      this.error = null
+
+      try {
+        const apiClient = new ApiClient()
+        const authService = new AuthService(apiClient)
+
+        const response = await authService.register(userData)
+
+        if (response.success && response.data) {
+          this.user = response.data
+          this.isAuthenticated = true
+        } else {
+          this.error = response.error || 'Error al registrarse'
         }
       } catch (error) {
         this.error = error instanceof Error ? error.message : 'Error desconocido'

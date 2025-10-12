@@ -6,18 +6,26 @@
         <div class="flex justify-between items-center h-20">
           <div class="flex items-center">
             <img
-              src="/src/assets/logo1.png"
+              src="/src/assets/logo.png"
               alt="Quórum Luxe"
               class="h-24 w-auto"
             />
+            <h1 class="text-2xl font-bold bg-gradient-to-r from-dorado to-dorado-oscuro bg-clip-text text-transparent">
+              Quórum Luxe
+            </h1>
           </div>
 
           <div class="flex items-center space-x-4">
             <div v-if="isAuthenticated" class="flex items-center space-x-3">
-              <div class="w-10 h-10 bg-gradient-to-br from-dorado to-dorado-oscuro rounded-full flex items-center justify-center text-blanco-puro text-sm font-bold shadow-lg">
-                {{ userInitials }}
-              </div>
-              <span class="text-sm font-medium text-texto-principal">{{ user?.nombre }}</span>
+              <router-link
+                to="/perfil"
+                class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-crema/50 transition-all duration-200 group"
+              >
+                <div class="w-10 h-10 bg-gradient-to-br from-dorado to-dorado-oscuro rounded-full flex items-center justify-center text-blanco-puro text-sm font-bold shadow-lg group-hover:shadow-xl transition-shadow">
+                  {{ userInitials }}
+                </div>
+                <span class="text-sm font-medium text-texto-principal hidden sm:block">{{ user?.nombre }}</span>
+              </router-link>
               <BaseButton variant="ghost" size="sm" @click="logout">
                 Cerrar Sesión
               </BaseButton>
@@ -35,6 +43,18 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="space-y-8">
+        <!-- Botón de prueba (solo desarrollo) -->
+        <div class="flex justify-center">
+          <BaseButton
+            variant="ghost"
+            size="sm"
+            @click="cargarDatosPrueba"
+            class="text-xs opacity-50 hover:opacity-100 transition-opacity"
+          >
+            Cargar Datos de Prueba
+          </BaseButton>
+        </div>
+
         <!-- Countdown Timer -->
         <div class="flex justify-center">
           <CountdownTimer />
@@ -177,7 +197,7 @@
           <div class="space-y-4">
             <div class="flex items-center space-x-3">
               <img
-                src="/src/assets/logo1.png"
+                src="/src/assets/logo.png"
                 alt="Quórum Luxe"
                 class="h-10 w-auto"
               />
@@ -356,10 +376,14 @@ const logout = async () => {
   await authStore.logout()
 }
 
+const cargarDatosPrueba = () => {
+  sorteoStore.cargarDatosDePrueba()
+}
+
 onMounted(async () => {
   // Verificar autenticación al cargar
   await authStore.checkAuth()
-  
+
   // Cargar datos del sorteo
   await sorteoStore.fetchSorteoActual()
   await sorteoStore.fetchMontoAcumulado()

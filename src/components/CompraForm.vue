@@ -48,11 +48,11 @@
       <div class="bg-gris-claro p-4 rounded-lg">
         <div class="flex justify-between items-center">
           <span class="text-sm text-gris-medio">Precio por número:</span>
-          <span class="font-semibold text-gris-oscuro">${{ precioFormateado }}</span>
+          <span class="font-semibold text-gris-oscuro">{{ precioFormateado }}</span>
         </div>
         <div class="flex justify-between items-center mt-2">
           <span class="text-sm text-gris-medio">Total a pagar:</span>
-          <span class="text-lg font-bold text-dorado">${{ precioFormateado }}</span>
+          <span class="text-lg font-bold text-dorado">{{ precioFormateado }}</span>
         </div>
       </div>
       
