@@ -35,7 +35,7 @@ export const config = {
   
   sorteo: {
     duracionHoras: parseInt(import.meta.env.VITE_SORTEO_DURACION_HORAS || '24'),
-    precioNumero: parseInt(import.meta.env.VITE_PRECIO_NUMERO || '1000'),
+    precioNumero: parseInt(import.meta.env.VITE_PRECIO_NUMERO || '2000'),
     moneda: import.meta.env.VITE_MONEDA || 'CLP',
   },
   
