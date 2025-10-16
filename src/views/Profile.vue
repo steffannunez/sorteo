@@ -75,9 +75,10 @@
             <ProfileNotifications />
           </div>
 
-          <!-- Columna derecha: Historial -->
-          <div class="lg:col-span-2">
+          <!-- Columna derecha: Historiales -->
+          <div class="lg:col-span-2 space-y-8">
             <ProfileHistory />
+            <ProfileTicketHistory />
           </div>
         </div>
       </div>
@@ -222,6 +223,7 @@ import ProfileInfo from '@/components/ProfileInfo.vue'
 import ProfileSecurity from '@/components/ProfileSecurity.vue'
 import ProfileNotifications from '@/components/ProfileNotifications.vue'
 import ProfileHistory from '@/components/ProfileHistory.vue'
+import ProfileTicketHistory from '@/components/ProfileTicketHistory.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 
 const router = useRouter()
