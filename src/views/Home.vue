@@ -42,150 +42,173 @@
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="space-y-8">
-        <!-- Botón de prueba (solo desarrollo) -->
-        <div class="flex justify-center">
-          <BaseButton
-            variant="ghost"
-            size="sm"
-            @click="cargarDatosPrueba"
-            class="text-xs opacity-50 hover:opacity-100 transition-opacity"
-          >
-            Cargar Datos de Prueba
-          </BaseButton>
-        </div>
+      <!-- Layout con 3 columnas: Top 10 | Área de Juegos | Compra de Tickets -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Sidebar Izquierdo: Top 10 Jugadores -->
+        <aside class="lg:col-span-3">
+          <div class="sticky top-24">
+            <TopPlayersRanking />
+          </div>
+        </aside>
 
-        <!-- Countdown Timer -->
-        <div class="flex justify-center">
-          <CountdownTimer />
-        </div>
+        <!-- Contenido Central: Área de Juegos -->
+        <section class="lg:col-span-6 space-y-6">
+          <!-- Botón de prueba (solo desarrollo) -->
+          <div class="flex justify-center">
+            <BaseButton
+              variant="ghost"
+              size="sm"
+              @click="cargarDatosPrueba"
+              class="text-xs opacity-50 hover:opacity-100 transition-opacity"
+            >
+              Cargar Datos de Prueba
+            </BaseButton>
+          </div>
 
-        <!-- Monto Acumulado -->
-        <div class="max-w-md mx-auto">
-          <MontoAcumulado />
-        </div>
-
-        <!-- Compra de Números -->
-        <div v-if="isAuthenticated" class="max-w-md mx-auto">
-          <CompraForm />
-        </div>
-
-        <!-- Mensaje para usuarios no autenticados -->
-        <div v-else class="max-w-md mx-auto">
-          <BaseCard class="text-center" variant="elevated">
-            <div class="space-y-6">
-              <div class="w-16 h-16 mx-auto bg-gradient-to-br from-dorado to-dorado-oscuro rounded-full flex items-center justify-center shadow-lg">
-                <svg class="w-8 h-8 text-blanco-puro" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-texto-principal">
-                Inicia sesión para comprar números
-              </h3>
-              <p class="text-texto-secundario">
-                Necesitas estar registrado para participar en el sorteo
+          <!-- Mensaje de Bienvenida -->
+          <BaseCard variant="elevated" class="text-center">
+            <div class="space-y-4">
+              <div class="text-6xl">🎮</div>
+              <h2 class="text-3xl font-bold bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">
+                ¡Juega y Gana Premios!
+              </h2>
+              <p class="text-texto-secundario max-w-md mx-auto">
+                Demuestra tu habilidad en nuestros juegos diarios, acumula puntos y participa en sorteos mensuales
               </p>
-              <BaseButton @click="showLogin = true" class="w-full" size="lg">
-                Iniciar Sesión
-              </BaseButton>
             </div>
           </BaseCard>
-        </div>
 
-        <!-- Secciones laterales -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
-          <!-- Últimos Ganadores (Izquierda) -->
-          <div class="space-y-4">
-            <BaseCard variant="elevated">
-              <template #header>
-                <h3 class="text-xl font-bold text-texto-principal text-center">
-                  Últimos Ganadores
+          <!-- Juegos Disponibles (Placeholder) -->
+          <BaseCard variant="elevated">
+            <template #header>
+              <h3 class="text-xl font-bold text-texto-principal">
+                Juegos del Día
+              </h3>
+            </template>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <!-- Wordle -->
+              <router-link
+                to="/juegos/wordle"
+                class="group p-6 bg-gradient-to-br from-purple-50 to-transparent rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all duration-300 hover:shadow-lg cursor-pointer block"
+              >
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🔤</div>
+                <h4 class="font-bold text-texto-principal mb-2">Palabra del Día</h4>
+                <p class="text-sm text-texto-secundario mb-3">Adivina la palabra secreta</p>
+                <div class="inline-flex items-center text-xs font-medium text-purple-600">
+                  ¡Jugar ahora!
+                  <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </router-link>
+
+              <!-- Contexto -->
+              <div class="group p-6 bg-gradient-to-br from-blue-50 to-transparent rounded-xl border-2 border-blue-200 hover:border-blue-400 transition-all duration-300 hover:shadow-lg cursor-pointer">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🧩</div>
+                <h4 class="font-bold text-texto-principal mb-2">Contexto</h4>
+                <p class="text-sm text-texto-secundario mb-3">Encuentra por similitud</p>
+                <div class="text-xs font-medium text-blue-600">Próximamente</div>
+              </div>
+
+              <!-- Ahorcado -->
+              <div class="group p-6 bg-gradient-to-br from-green-50 to-transparent rounded-xl border-2 border-green-200 hover:border-green-400 transition-all duration-300 hover:shadow-lg cursor-pointer">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🎯</div>
+                <h4 class="font-bold text-texto-principal mb-2">Ahorcado</h4>
+                <p class="text-sm text-texto-secundario mb-3">Letra por letra</p>
+                <div class="text-xs font-medium text-green-600">Próximamente</div>
+              </div>
+            </div>
+          </BaseCard>
+
+          <!-- Mensaje para usuarios no autenticados -->
+          <div v-if="!isAuthenticated">
+            <BaseCard class="text-center" variant="elevated">
+              <div class="space-y-6">
+                <div class="w-16 h-16 mx-auto bg-gradient-to-br from-dorado to-dorado-oscuro rounded-full flex items-center justify-center shadow-lg">
+                  <svg class="w-8 h-8 text-blanco-puro" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-texto-principal">
+                  Inicia sesión para jugar
                 </h3>
-              </template>
+                <p class="text-texto-secundario">
+                  Necesitas estar registrado para jugar y participar en los sorteos
+                </p>
+                <BaseButton @click="showLogin = true" class="w-full" size="lg">
+                  Iniciar Sesión
+                </BaseButton>
+              </div>
+            </BaseCard>
+          </div>
 
+          <!-- Información del Sorteo Mensual -->
+          <BaseCard variant="elevated">
+            <template #header>
+              <h3 class="text-xl font-bold text-texto-principal text-center">
+                Sorteo Mensual
+              </h3>
+            </template>
+
+            <div class="space-y-4">
+              <div class="text-center">
+                <div class="text-sm text-texto-secundario mb-2">Próximo Sorteo</div>
+                <div class="text-3xl font-bold bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">
+                  31 de Enero, 2025
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gradient-to-br from-dorado-claro/20 to-transparent rounded-lg p-4 border border-dorado-claro text-center">
+                  <div class="text-2xl font-bold text-texto-principal">500</div>
+                  <div class="text-xs text-texto-secundario">Participantes</div>
+                </div>
+                <div class="bg-gradient-to-br from-dorado-claro/20 to-transparent rounded-lg p-4 border border-dorado-claro text-center">
+                  <div class="text-2xl font-bold text-texto-principal">$5M</div>
+                  <div class="text-xs text-texto-secundario">Premio Acumulado</div>
+                </div>
+              </div>
+
+              <p class="text-sm text-texto-secundario text-center">
+                Cada 1000 puntos acumulados te dan 1 participación en el sorteo
+              </p>
+            </div>
+          </BaseCard>
+        </section>
+
+        <!-- Sidebar Derecho: Compra de Tickets -->
+        <aside class="lg:col-span-3">
+          <div class="sticky top-24 space-y-6">
+            <TicketPurchase v-if="isAuthenticated" />
+
+            <!-- Información adicional -->
+            <BaseCard variant="elevated" class="text-center">
               <div class="space-y-3">
-                <div v-for="ganador in ultimosGanadores" :key="ganador.id"
-                     class="flex justify-between items-center p-4 bg-gradient-to-r from-dorado-claro/10 to-transparent rounded-xl border border-bordes hover:border-dorado-claro transition-all duration-300 hover:shadow-md">
-                  <div class="flex-1">
-                    <div class="font-semibold text-texto-principal">{{ ganador.nombre }}</div>
-                    <div class="text-sm text-texto-secundario">{{ ganador.fecha }}</div>
-                  </div>
-                  <div class="text-right">
-                    <div class="font-bold text-lg bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">{{ ganador.monto }}</div>
-                    <div class="text-xs text-texto-secundario font-medium">Ganado</div>
-                  </div>
-                </div>
-
-                <div v-if="ultimosGanadores.length === 0" class="text-center py-12">
-                  <div class="text-texto-secundario">
-                    <div class="text-5xl mb-3">🎲</div>
-                    <p class="font-medium text-lg">No hay ganadores anteriores aún</p>
-                    <p class="text-sm mt-1">¡Sé el primero en ganar!</p>
-                  </div>
-                </div>
+                <div class="text-3xl">ℹ️</div>
+                <h4 class="font-bold text-texto-principal">¿Cómo funciona?</h4>
+                <ul class="text-xs text-texto-secundario space-y-2 text-left">
+                  <li class="flex items-start space-x-2">
+                    <span class="text-dorado">•</span>
+                    <span>1 intento gratis por juego al día</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <span class="text-dorado">•</span>
+                    <span>Compra tickets para más intentos</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <span class="text-dorado">•</span>
+                    <span>Acumula puntos con tu habilidad</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <span class="text-dorado">•</span>
+                    <span>Participa en sorteos mensuales</span>
+                  </li>
+                </ul>
               </div>
             </BaseCard>
           </div>
-
-          <!-- Información de Distribución (Derecha) -->
-          <div class="space-y-4">
-            <BaseCard variant="elevated">
-              <template #header>
-                <h3 class="text-xl font-bold text-texto-principal text-center">
-                  Distribución de Fondos
-                </h3>
-              </template>
-
-              <div class="space-y-4">
-                <div class="text-center mb-6">
-                  <p class="text-texto-secundario">Así distribuimos los fondos recaudados con transparencia</p>
-                </div>
-
-                <div class="space-y-3">
-                  <div class="flex items-center justify-between p-5 bg-gradient-to-r from-dorado/10 to-transparent rounded-xl border border-dorado-claro/50 hover:border-dorado transition-all duration-300 hover:shadow-md">
-                    <div class="flex items-center space-x-4">
-                      <div class="w-14 h-14 bg-gradient-to-br from-dorado to-dorado-oscuro rounded-full flex items-center justify-center text-blanco-puro font-bold text-lg shadow-lg">80%</div>
-                      <div>
-                        <div class="font-bold text-texto-principal">Para el Pozo</div>
-                        <div class="text-sm text-texto-secundario">80% de lo recaudado va directamente al pozo del sorteo.</div>
-                      </div>
-                    </div>
-                    <div class="text-2xl">🎯</div>
-                  </div>
-
-                  <div class="flex items-center justify-between p-5 bg-gradient-to-r from-green-50 to-transparent rounded-xl border border-green-200/50 hover:border-green-300 transition-all duration-300 hover:shadow-md">
-                    <div class="flex items-center space-x-4">
-                      <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">10%</div>
-                      <div>
-                        <div class="font-bold text-texto-principal">Beneficencia y Caridad</div>
-                        <div class="text-sm text-texto-secundario">Ayudamos a causas sociales como Bomberos y Teletón</div>
-                      </div>
-                    </div>
-                    <div class="text-2xl">❤️</div>
-                  </div>
-
-                  <div class="flex items-center justify-between p-5 bg-gradient-to-r from-bordes to-transparent rounded-xl border border-bordes hover:border-texto-secundario/30 transition-all duration-300 hover:shadow-md">
-                    <div class="flex items-center space-x-4">
-                      <div class="w-14 h-14 bg-gradient-to-br from-texto-secundario to-texto-principal rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">10%</div>
-                      <div>
-                        <div class="font-bold text-texto-principal">Plataforma</div>
-                        <div class="text-sm text-texto-secundario">Mantenimiento y operación de la plataforma.</div>
-                      </div>
-                    </div>
-                    <div class="text-2xl">⚙️</div>
-                  </div>
-                </div>
-
-                <div class="mt-6 p-5 bg-gradient-to-r from-dorado-claro/20 to-transparent rounded-xl border border-dorado-claro">
-                  <div class="text-center">
-                    <div class="text-sm text-texto-secundario mb-1 font-medium">Tu confianza es importante</div>
-                    <div class="font-bold text-texto-principal">Auditoría externa disponible</div>
-                  </div>
-                </div>
-              </div>
-            </BaseCard>
-          </div>
-        </div>
+        </aside>
       </div>
     </main>
 
@@ -333,16 +356,17 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
-import { useSorteoStore } from '@/stores/sorteoStore'
-import CountdownTimer from '@/components/CountdownTimer.vue'
-import MontoAcumulado from '@/components/MontoAcumulado.vue'
-import CompraForm from '@/components/CompraForm.vue'
+import { useTicketStore } from '@/stores/ticketStore'
+import { useRankingStore } from '@/stores/rankingStore'
+import TopPlayersRanking from '@/components/TopPlayersRanking.vue'
+import TicketPurchase from '@/components/TicketPurchase.vue'
 import LoginForm from '@/components/LoginForm.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseCard from '@/components/ui/BaseCard.vue'
 
 const authStore = useAuthStore()
-const sorteoStore = useSorteoStore()
+const ticketStore = useTicketStore()
+const rankingStore = useRankingStore()
 
 const showLogin = ref(false)
 
@@ -350,44 +374,27 @@ const isAuthenticated = computed(() => authStore.isLoggedIn)
 const user = computed(() => authStore.user)
 const userInitials = computed(() => authStore.userInitials)
 
-// Datos de los últimos ganadores
-const ultimosGanadores = ref([
-  {
-    id: 1,
-    nombre: 'María González',
-    monto: '$22.500.000',
-    fecha: '15 de Diciembre, 2024'
-  },
-  {
-    id: 2,
-    nombre: 'Carlos Rodríguez',
-    monto: '$17.800.000',
-    fecha: '1 de Diciembre, 2024'
-  },
-  {
-    id: 3,
-    nombre: 'Ana Martínez',
-    monto: '$35.200.000',
-    fecha: '15 de Noviembre, 2024'
-  }
-])
-
 const logout = async () => {
   await authStore.logout()
 }
 
 const cargarDatosPrueba = () => {
-  sorteoStore.cargarDatosDePrueba()
+  if (user.value) {
+    ticketStore.cargarDatosDePrueba(user.value.id)
+  }
+  rankingStore.cargarDatosDePrueba()
 }
 
 onMounted(async () => {
   // Verificar autenticación al cargar
   await authStore.checkAuth()
 
-  // Cargar datos del sorteo
-  await sorteoStore.fetchSorteoActual()
-  await sorteoStore.fetchMontoAcumulado()
-  await sorteoStore.fetchNumerosDisponibles()
-  await sorteoStore.fetchNumerosVendidos()
+  // Cargar datos de tickets si está autenticado
+  if (user.value) {
+    await ticketStore.fetchUserTickets(user.value.id)
+  }
+
+  // Cargar ranking
+  await rankingStore.fetchTopPlayers('mensual')
 })
 </script>

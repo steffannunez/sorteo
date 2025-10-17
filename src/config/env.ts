@@ -43,6 +43,11 @@ export const config = {
     baseUrl: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api',
     timeout: parseInt(import.meta.env.VITE_API_TIMEOUT || '10000'),
   },
+
+  supabase: {
+    url: import.meta.env.VITE_SUPABASE_URL || '',
+    anonKey: import.meta.env.VITE_SUPABASE_ANON_KEY || '',
+  },
 } as const
 
 // Validación de variables de entorno requeridas

@@ -124,6 +124,21 @@ export interface HistorialCompra {
   montoGanado?: number
 }
 
+// Tipo para historial de participación en sorteos (con puntos)
+export interface ParticipacionSorteo {
+  id: string
+  sorteoId: string
+  sorteoNombre: string
+  fechaInicio: Date
+  fechaFin: Date
+  puntosAcumulados: number
+  posicionRanking: number
+  participantes: number
+  esGanador: boolean
+  montoGanado?: number
+  estado: 'en_curso' | 'finalizado'
+}
+
 export interface NotificationPreferences {
   emailNotifications: boolean
   sorteoNotifications: boolean
@@ -132,10 +147,27 @@ export interface NotificationPreferences {
 }
 
 export interface UserStats {
-  totalGanado: number
+  // Puntos
+  puntosActuales: number // Puntos acumulados en el período actual
+  puntosHistoricos: number // Total de puntos ganados desde siempre
+  recordPuntosMensuales: number // Máximo de puntos en un mes
+
+  // Dinero
+  totalGanado: number // Dinero total ganado en sorteos
+  totalGastado: number // Dinero gastado en tickets
+
+  // Sorteos
   sorteosParticipados: number
-  numerosComprados: number
-  premiosGanados: number
+  sorteosGanados: number
+
+  // Juegos
+  partidasJugadas: number
+  partidasGanadas: number
+  promedioIntentos: number
+
+  // Tickets
+  ticketsComprados: number
+  ticketsUsados: number
 }
 
 export interface UpdateProfileRequest {
@@ -148,4 +180,129 @@ export interface ChangePasswordRequest {
   currentPassword: string
   newPassword: string
   confirmPassword: string
+}
+
+// ============================================
+// TIPOS PARA SISTEMA DE JUEGOS Y TICKETS
+// ============================================
+
+// Tipos para el sistema de tickets
+export interface Ticket {
+  id: string
+  userId: string
+  cantidad: number
+  fechaCompra: Date
+  metodoPago: 'paypal' | 'mercadopago' | 'stripe'
+  transaccionId: string
+  estadoPago: 'pendiente' | 'pagado' | 'rechazado'
+  montoPagado: number
+}
+
+export interface TicketPurchaseRequest {
+  userId: string
+  cantidad: number
+  metodoPago: 'paypal' | 'mercadopago' | 'stripe'
+}
+
+export interface UserTickets {
+  userId: string
+  ticketsDisponibles: number
+  ticketsUsados: number
+  ticketsComprados: number
+  historialCompras: Ticket[]
+}
+
+// Tipos para el ranking de jugadores
+export interface PlayerScore {
+  userId: string
+  userName: string
+  puntajeTotal: number
+  partidasJugadas: number
+  promedioPuntaje: number
+  posicion: number
+  avatarUrl?: string
+}
+
+export interface TopPlayers {
+  periodo: 'diario' | 'semanal' | 'mensual' | 'historico'
+  fechaActualizacion: Date
+  jugadores: PlayerScore[]
+}
+
+// Tipos para intentos de juego
+export interface GameAttempt {
+  id: string
+  userId: string
+  gameType: 'wordle' | 'contexto' | 'ahorcado'
+  fecha: Date
+  puntajeObtenido: number
+  intentosUsados: number
+  completado: boolean
+  tiempoEmpleado: number // en segundos
+}
+
+export interface DailyGameStatus {
+  gameType: 'wordle' | 'contexto' | 'ahorcado'
+  intentoGratisUsado: boolean
+  intentosExtraUsados: number
+  ultimoIntento?: Date
+  mejorPuntaje?: number
+}
+
+// ============================================
+// TIPOS ESPECÍFICOS PARA WORDLE
+// ============================================
+
+export type LetterStatus = 'correct' | 'present' | 'absent' | 'empty'
+
+export interface WordleLetter {
+  letter: string
+  status: LetterStatus
+}
+
+export interface WordleRow {
+  letters: WordleLetter[]
+  isSubmitted: boolean
+}
+
+export interface WordleGameState {
+  gameId: string | null
+  dailyWordId: string
+  palabraSecreta: string // Solo en cliente, encriptada o no expuesta en producción
+  intentosMaximos: number
+  intentoActual: number
+  filas: WordleRow[]
+  estadoJuego: 'jugando' | 'ganado' | 'perdido'
+  puntaje: number
+  tiempoInicio: Date | null
+  tiempoFin: Date | null
+}
+
+export interface WordleStats {
+  partidasJugadas: number
+  partidasGanadas: number
+  rachaActual: number
+  mejorRacha: number
+  distribucionIntentos: Record<number, number> // {1: 5, 2: 10, 3: 15, ...}
+  promedioIntentos: number
+}
+
+export interface DailyWord {
+  id: string
+  palabra: string
+  fecha: string // YYYY-MM-DD
+  dificultad: 'facil' | 'media' | 'dificil'
+  categoria: string | null
+}
+
+export interface WordleGameResult {
+  gameId: string
+  userId: string
+  dailyWordId: string
+  intentosUsados: number
+  completado: boolean
+  ganado: boolean
+  puntaje: number
+  tiempoSegundos: number
+  fechaJuego: Date
 }

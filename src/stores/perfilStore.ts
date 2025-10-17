@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import type {
   User,
   HistorialCompra,
+  ParticipacionSorteo,
   NotificationPreferences,
   UserStats,
   UpdateProfileRequest,
@@ -15,6 +16,7 @@ import { useAuthStore } from '@/stores/authStore'
 export const usePerfilStore = defineStore('perfil', {
   state: () => ({
     historialCompras: [] as HistorialCompra[],
+    participacionesSorteos: [] as ParticipacionSorteo[],
     notificationPreferences: {
       emailNotifications: true,
       sorteoNotifications: true,
@@ -22,10 +24,23 @@ export const usePerfilStore = defineStore('perfil', {
       promocionesNotifications: false,
     } as NotificationPreferences,
     userStats: {
+      // Puntos
+      puntosActuales: 0,
+      puntosHistoricos: 0,
+      recordPuntosMensuales: 0,
+      // Dinero
       totalGanado: 0,
+      totalGastado: 0,
+      // Sorteos
       sorteosParticipados: 0,
-      numerosComprados: 0,
-      premiosGanados: 0,
+      sorteosGanados: 0,
+      // Juegos
+      partidasJugadas: 0,
+      partidasGanadas: 0,
+      promedioIntentos: 0,
+      // Tickets
+      ticketsComprados: 0,
+      ticketsUsados: 0,
     } as UserStats,
     loading: false,
     error: null as string | null,
@@ -261,51 +276,72 @@ export const usePerfilStore = defineStore('perfil', {
 
     // Cargar datos de prueba para desarrollo
     cargarDatosDePrueba() {
-      this.historialCompras = [
+      // Historial de participaciones en sorteos
+      this.participacionesSorteos = [
         {
-          id: '1',
+          id: 'p1',
           sorteoId: 's1',
-          numero: 42,
-          fechaCompra: new Date('2024-12-01'),
-          montoPagado: 25000,
-          metodoPago: 'paypal',
-          estadoPago: 'pagado',
-          transaccionId: 'TRX-001',
-          estadoSorteo: 'finalizado',
+          sorteoNombre: 'Sorteo Mensual - Diciembre 2024',
+          fechaInicio: new Date('2024-12-01'),
+          fechaFin: new Date('2024-12-31'),
+          puntosAcumulados: 2850,
+          posicionRanking: 1,
+          participantes: 423,
           esGanador: true,
-          montoGanado: 15000000
+          montoGanado: 5000000,
+          estado: 'finalizado'
         },
         {
-          id: '2',
+          id: 'p2',
           sorteoId: 's2',
-          numero: 13,
-          fechaCompra: new Date('2024-12-15'),
-          montoPagado: 25000,
-          metodoPago: 'mercadopago',
-          estadoPago: 'pagado',
-          transaccionId: 'TRX-002',
-          estadoSorteo: 'en_curso',
+          sorteoNombre: 'Sorteo Mensual - Noviembre 2024',
+          fechaInicio: new Date('2024-11-01'),
+          fechaFin: new Date('2024-11-30'),
+          puntosAcumulados: 1920,
+          posicionRanking: 5,
+          participantes: 389,
+          esGanador: false,
+          estado: 'finalizado'
         },
         {
-          id: '3',
+          id: 'p3',
           sorteoId: 's3',
-          numero: 77,
-          fechaCompra: new Date('2024-11-20'),
-          montoPagado: 25000,
-          metodoPago: 'stripe',
-          estadoPago: 'pagado',
-          transaccionId: 'TRX-003',
-          estadoSorteo: 'finalizado',
-          esGanador: false
+          sorteoNombre: 'Sorteo Mensual - Enero 2025',
+          fechaInicio: new Date('2025-01-01'),
+          fechaFin: new Date('2025-01-31'),
+          puntosAcumulados: 1580,
+          posicionRanking: 3,
+          participantes: 512,
+          esGanador: false,
+          estado: 'en_curso'
         },
       ]
 
       this.userStats = {
-        totalGanado: 15000000,
+        // Puntos
+        puntosActuales: 1580, // Puntos del sorteo actual
+        puntosHistoricos: 6350, // Total de puntos ganados desde siempre
+        recordPuntosMensuales: 2850, // Récord en diciembre
+
+        // Dinero
+        totalGanado: 5000000, // Ganó $5M en diciembre
+        totalGastado: 15000, // Ha comprado tickets por $15K
+
+        // Sorteos
         sorteosParticipados: 3,
-        numerosComprados: 3,
-        premiosGanados: 1
+        sorteosGanados: 1,
+
+        // Juegos
+        partidasJugadas: 45,
+        partidasGanadas: 32,
+        promedioIntentos: 3.2,
+
+        // Tickets
+        ticketsComprados: 15,
+        ticketsUsados: 8,
       }
+
+      console.log('✅ Datos de prueba del perfil cargados')
     },
 
     clearError() {

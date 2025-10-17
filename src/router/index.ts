@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Profile from '@/views/Profile.vue'
+import GameWordle from '@/views/GameWordle.vue'
 
 const routes = [
   {
@@ -14,6 +15,14 @@ const routes = [
     component: Profile,
     meta: {
       requiresAuth: true,
+    },
+  },
+  {
+    path: '/juegos/wordle',
+    name: 'GameWordle',
+    component: GameWordle,
+    meta: {
+      title: 'Palabra del Día - Wordle',
     },
   },
 ]
