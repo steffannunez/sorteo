@@ -306,3 +306,69 @@ export interface WordleGameResult {
   tiempoSegundos: number
   fechaJuego: Date
 }
+
+// ============================================
+// TIPOS ESPECÍFICOS PARA SUDOKU
+// ============================================
+
+export type SudokuDifficulty = 'easy' | 'medium' | 'hard'
+
+export interface SudokuCell {
+  value: number // 0 para vacío, 1-9 para números
+  isOriginal: boolean // true si es parte del puzzle inicial
+  isValid: boolean // validación en tiempo real
+  notes: number[] // números anotados en modo lápiz
+}
+
+export interface SudokuBoard {
+  cells: SudokuCell[][] // matriz 9x9
+  solution: number[][] // solución completa
+}
+
+export interface SudokuGameState {
+  gameId: string | null
+  board: SudokuBoard
+  difficulty: SudokuDifficulty
+  startTime: Date | null
+  endTime: Date | null
+  elapsedTime: number // en segundos
+  errors: number
+  hintsUsed: number
+  isComplete: boolean
+  isPaused: boolean
+  pencilMode: boolean // modo lápiz activado
+}
+
+export interface SudokuMove {
+  row: number
+  col: number
+  previousValue: number
+  newValue: number
+  timestamp: Date
+}
+
+export interface SudokuGameResult {
+  gameId: string
+  userId: string
+  difficulty: SudokuDifficulty
+  completed: boolean
+  timeSeconds: number
+  errors: number
+  hintsUsed: number
+  basePoints: number // puntos base según dificultad
+  errorPenalty: number // penalización por errores
+  hintPenalty: number // penalización por pistas
+  timebonus: number // bonus por tiempo
+  finalScore: number // puntaje final
+  fechaJuego: Date
+}
+
+export interface SudokuStats {
+  partidasJugadas: number
+  partidasCompletadas: number
+  mejorTiempo: Record<SudokuDifficulty, number> // mejor tiempo por dificultad
+  promedioTiempo: Record<SudokuDifficulty, number>
+  totalPuntos: number
+  promedioErrores: number
+  tasaCompletado: number // porcentaje de juegos completados
+}

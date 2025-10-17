@@ -8,11 +8,11 @@
             <router-link to="/" class="flex items-center">
               <img
                 src="/src/assets/logo.png"
-                alt="Quórum Luxe"
+                alt="Daily win Logo"
                 class="h-24 w-auto"
               />
             <h1 class="text-2xl font-bold bg-gradient-to-r from-dorado to-dorado-oscuro bg-clip-text text-transparent">
-              Quórum Luxe
+              Daily win
             </h1>
             </router-link>
           </div>
@@ -93,17 +93,17 @@
             <div class="flex items-center space-x-3">
               <img
                 src="/src/assets/logo.png"
-                alt="Quórum Luxe"
+                alt="Daily win Logo"
                 class="h-10 w-auto"
               />
-              <h3 class="text-lg font-bold bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">Quórum Luxe ltda.</h3>
+              <h3 class="text-lg font-bold bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">Daily win ltda.</h3>
             </div>
             <p class="text-texto-secundario text-sm leading-relaxed">
               Plataforma de sorteos transparentes y seguros.
               Participa en sorteos con total confianza y transparencia.
             </p>
             <div class="text-xs text-texto-secundario">
-              © 2025 Quórum Luxe. Todos los derechos reservados.
+              © 2025 Daily win. Todos los derechos reservados.
             </div>
           </div>
 

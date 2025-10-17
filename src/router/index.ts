@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Profile from '@/views/Profile.vue'
 import GameWordle from '@/views/GameWordle.vue'
+import SudokuView from '@/views/SudokuView.vue'
 
 const routes = [
   {
@@ -23,6 +24,14 @@ const routes = [
     component: GameWordle,
     meta: {
       title: 'Palabra del Día - Wordle',
+    },
+  },
+  {
+    path: '/juegos/sudoku',
+    name: 'GameSudoku',
+    component: SudokuView,
+    meta: {
+      title: 'Sudoku - Puzzle de Números',
     },
   },
 ]

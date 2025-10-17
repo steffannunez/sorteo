@@ -7,11 +7,11 @@
           <div class="flex items-center">
             <img
               src="/src/assets/logo.png"
-              alt="Quórum Luxe"
+              alt="Daily win Logo"
               class="h-24 w-auto"
             />
             <h1 class="text-2xl font-bold bg-gradient-to-r from-dorado to-dorado-oscuro bg-clip-text text-transparent">
-              Quórum Luxe
+              Daily win
             </h1>
           </div>
 
@@ -86,13 +86,14 @@
               </h3>
             </template>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <!-- Wordle -->
               <router-link
                 to="/juegos/wordle"
                 class="group p-6 bg-gradient-to-br from-purple-50 to-transparent rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all duration-300 hover:shadow-lg cursor-pointer block"
               >
-                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🔤</div>
+                
+                <img src="../assets/letters-svgrepo-com.svg" alt="letters"  class="w-12 h-12 mb-3 ml-3 group-hover:scale-110 transition-transform"/>
                 <h4 class="font-bold text-texto-principal mb-2">Palabra del Día</h4>
                 <p class="text-sm text-texto-secundario mb-3">Adivina la palabra secreta</p>
                 <div class="inline-flex items-center text-xs font-medium text-purple-600">
@@ -103,20 +104,36 @@
                 </div>
               </router-link>
 
+              <!-- Sudoku -->
+              <router-link
+                to="/juegos/sudoku"
+                class="group p-6 bg-gradient-to-br from-blue-50 to-transparent rounded-xl border-2 border-blue-200 hover:border-blue-400 transition-all duration-300 hover:shadow-lg cursor-pointer block"
+              >
+                <img src="../assets/sudoku-svgrepo-com.svg" alt="sudoku"  class="w-12 h-12 mb-3 ml-3 group-hover:scale-110 transition-transform"/>
+                <h4 class="font-bold text-texto-principal mb-2">Sudoku</h4>
+                <p class="text-sm text-texto-secundario mb-3">Completa el puzzle numérico</p>
+                <div class="inline-flex items-center text-xs font-medium text-blue-600">
+                  ¡Jugar ahora!
+                  <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </router-link>
+
               <!-- Contexto -->
-              <div class="group p-6 bg-gradient-to-br from-blue-50 to-transparent rounded-xl border-2 border-blue-200 hover:border-blue-400 transition-all duration-300 hover:shadow-lg cursor-pointer">
-                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🧩</div>
+              <div class="group p-6 bg-gradient-to-br from-green-50 to-transparent rounded-xl border-2 border-green-200 hover:border-green-400 transition-all duration-300 hover:shadow-lg cursor-pointer">
+                <img src="../assets/puzzle-piece-svgrepo-com.svg" alt="contexto"  class="w-12 h-12 ml-3 mb-3 group-hover:scale-110 transition-transform"/>
                 <h4 class="font-bold text-texto-principal mb-2">Contexto</h4>
                 <p class="text-sm text-texto-secundario mb-3">Encuentra por similitud</p>
-                <div class="text-xs font-medium text-blue-600">Próximamente</div>
+                <div class="text-xs font-medium text-green-600">Próximamente</div>
               </div>
 
               <!-- Ahorcado -->
-              <div class="group p-6 bg-gradient-to-br from-green-50 to-transparent rounded-xl border-2 border-green-200 hover:border-green-400 transition-all duration-300 hover:shadow-lg cursor-pointer">
-                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🎯</div>
+              <div class="group p-6 bg-gradient-to-br from-amber-50 to-transparent rounded-xl border-2 border-amber-200 hover:border-amber-400 transition-all duration-300 hover:shadow-lg cursor-pointer">
+                <img src="../assets/rope-svgrepo-com.svg" alt="ahorcado"  class="w-12 h-12 mb-3 ml-3 group-hover:scale-110 transition-transform"/>
                 <h4 class="font-bold text-texto-principal mb-2">Ahorcado</h4>
                 <p class="text-sm text-texto-secundario mb-3">Letra por letra</p>
-                <div class="text-xs font-medium text-green-600">Próximamente</div>
+                <div class="text-xs font-medium text-amber-600">Próximamente</div>
               </div>
             </div>
           </BaseCard>
@@ -171,7 +188,7 @@
               </div>
 
               <p class="text-sm text-texto-secundario text-center">
-                Cada 1000 puntos acumulados te dan 1 participación en el sorteo
+                Juega y llega al top 3 para ganar increíbles premios.
               </p>
             </div>
           </BaseCard>
@@ -221,17 +238,17 @@
             <div class="flex items-center space-x-3">
               <img
                 src="/src/assets/logo.png"
-                alt="Quórum Luxe"
+                alt="Daily win Logo"
                 class="h-10 w-auto"
               />
-              <h3 class="text-lg font-bold bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">Quórum Luxe ltda.</h3>
+              <h3 class="text-lg font-bold bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">Daily win ltda.</h3>
             </div>
             <p class="text-texto-secundario text-sm leading-relaxed">
               Plataforma de sorteos transparentes y seguros.
               Participa en sorteos con total confianza y transparencia.
             </p>
             <div class="text-xs text-texto-secundario">
-              © 2025 Quórum Luxe. Todos los derechos reservados.
+              © 2025 Daily win. Todos los derechos reservados.
             </div>
           </div>
 
