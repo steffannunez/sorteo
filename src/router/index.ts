@@ -4,6 +4,7 @@ import Profile from '@/views/Profile.vue'
 import GameWordle from '@/views/GameWordle.vue'
 import SudokuView from '@/views/SudokuView.vue'
 import HangmanView from '@/views/HangmanView.vue'
+import TriviaView from '@/views/TriviaView.vue'
 
 const routes = [
   {
@@ -41,6 +42,14 @@ const routes = [
     component: HangmanView,
     meta: {
       title: 'Ahorcado - Adivina la Palabra',
+    },
+  },
+  {
+    path: '/juegos/trivia',
+    name: 'GameTrivia',
+    component: TriviaView,
+    meta: {
+      title: 'Trivia Challenge - Pon a Prueba tu Conocimiento',
     },
   },
 ]

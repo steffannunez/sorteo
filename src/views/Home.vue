@@ -86,7 +86,7 @@
               </h3>
             </template>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <!-- Wordle -->
               <router-link
                 to="/juegos/wordle"
@@ -120,13 +120,21 @@
                 </div>
               </router-link>
 
-              <!-- Contexto -->
-              <div class="group p-6 bg-gradient-to-br from-green-50 to-transparent rounded-xl border-2 border-green-200 hover:border-green-400 transition-all duration-300 hover:shadow-lg cursor-pointer">
-                <img src="../assets/puzzle-piece-svgrepo-com.svg" alt="contexto"  class="w-12 h-12 ml-3 mb-3 group-hover:scale-110 transition-transform"/>
-                <h4 class="font-bold text-texto-principal mb-2">Contexto</h4>
-                <p class="text-sm text-texto-secundario mb-3">Encuentra por similitud</p>
-                <div class="text-xs font-medium text-green-600">Próximamente</div>
-              </div>
+              <!-- Trivia -->
+              <router-link
+                to="/juegos/trivia"
+                class="group p-6 bg-gradient-to-br from-indigo-50 to-transparent rounded-xl border-2 border-indigo-200 hover:border-indigo-400 transition-all duration-300 hover:shadow-lg cursor-pointer block"
+              >
+                <div class="text-5xl mb-3 group-hover:scale-110 transition-transform">🧠</div>
+                <h4 class="font-bold text-texto-principal mb-2">Trivia Challenge</h4>
+                <p class="text-sm text-texto-secundario mb-3">Demuestra tu conocimiento</p>
+                <div class="inline-flex items-center text-xs font-medium text-indigo-600">
+                  ¡Jugar ahora!
+                  <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </router-link>
 
               <!-- Ahorcado -->
               <router-link

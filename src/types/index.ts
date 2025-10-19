@@ -233,7 +233,7 @@ export interface TopPlayers {
 export interface GameAttempt {
   id: string
   userId: string
-  gameType: 'wordle' | 'contexto' | 'ahorcado'
+  gameType: 'wordle' | 'sudoku' | 'ahorcado' | 'trivia'
   fecha: Date
   puntajeObtenido: number
   intentosUsados: number
@@ -242,7 +242,7 @@ export interface GameAttempt {
 }
 
 export interface DailyGameStatus {
-  gameType: 'wordle' | 'contexto' | 'ahorcado'
+  gameType: 'wordle' | 'sudoku' | 'ahorcado' | 'trivia'
   intentoGratisUsado: boolean
   intentosExtraUsados: number
   ultimoIntento?: Date
@@ -422,4 +422,59 @@ export interface HangmanStats {
   mejorRacha: number
   totalPistasUsadas: number
   promedioPuntaje: number
+}
+
+// ============================================
+// TIPOS ESPECÍFICOS PARA TRIVIA
+// ============================================
+
+export type TriviaDifficulty = 'easy' | 'medium' | 'hard'
+
+export interface TriviaQuestion {
+  id: string
+  question: string
+  correct_answer: string
+  incorrect_answers: string[]
+  category: string
+  difficulty: TriviaDifficulty
+  type: string
+}
+
+export interface TriviaQuestionDisplay {
+  question: string
+  options: string[] // 4 opciones mezcladas
+  correctAnswer: string
+  difficulty: TriviaDifficulty
+  category: string
+}
+
+export interface TriviaGameState {
+  gameId: string | null
+  currentQuestion: TriviaQuestionDisplay | null
+  questionNumber: number // número de pregunta actual (1-based)
+  totalScore: number
+  skipsUsed: number // cantidad de saltos usados
+  gameStatus: 'playing' | 'game_over' | 'not_started'
+  tiempoInicio: Date | null
+  tiempoFin: Date | null
+  questionsAnswered: number // preguntas correctamente respondidas
+}
+
+export interface TriviaGameResult {
+  gameId: string
+  userId: string
+  questionsAnswered: number
+  totalScore: number
+  skipsUsed: number
+  timeSeconds: number
+  highestDifficulty: TriviaDifficulty
+  fechaJuego: Date
+}
+
+export interface TriviaStats {
+  partidasJugadas: number
+  mejorPuntaje: number
+  promedioPreguntas: number // promedio de preguntas respondidas
+  promedioSaltos: number
+  totalPuntosAcumulados: number
 }
