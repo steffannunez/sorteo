@@ -3,6 +3,7 @@ import Home from '@/views/Home.vue'
 import Profile from '@/views/Profile.vue'
 import GameWordle from '@/views/GameWordle.vue'
 import SudokuView from '@/views/SudokuView.vue'
+import HangmanView from '@/views/HangmanView.vue'
 
 const routes = [
   {
@@ -32,6 +33,14 @@ const routes = [
     component: SudokuView,
     meta: {
       title: 'Sudoku - Puzzle de Números',
+    },
+  },
+  {
+    path: '/juegos/ahorcado',
+    name: 'GameHangman',
+    component: HangmanView,
+    meta: {
+      title: 'Ahorcado - Adivina la Palabra',
     },
   },
 ]

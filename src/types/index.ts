@@ -372,3 +372,54 @@ export interface SudokuStats {
   promedioErrores: number
   tasaCompletado: number // porcentaje de juegos completados
 }
+
+// ============================================
+// TIPOS ESPECÍFICOS PARA AHORCADO (HANGMAN)
+// ============================================
+
+export interface DailyHangmanWord {
+  id: string
+  palabra: string
+  pista: string
+  fecha: string // YYYY-MM-DD
+  dificultad: 'facil' | 'media' | 'dificil'
+  categoria: string | null
+}
+
+export interface HangmanGameState {
+  gameId: string | null
+  dailyWordId: string
+  palabraSecreta: string
+  palabraOculta: string[] // array con letras o '_'
+  letrasAdivinadas: string[] // letras correctas adivinadas
+  letrasIncorrectas: string[] // letras incorrectas
+  intentosMaximos: number // cantidad de partes del ahorcado (típicamente 6)
+  intentosRestantes: number
+  estadoJuego: 'jugando' | 'ganado' | 'perdido'
+  puntaje: number
+  tiempoInicio: Date | null
+  tiempoFin: Date | null
+  pistaUsada: boolean // si usó la pista (reduce puntos)
+}
+
+export interface HangmanGameResult {
+  gameId: string
+  userId: string
+  dailyWordId: string
+  intentosUsados: number
+  completado: boolean
+  ganado: boolean
+  puntaje: number
+  tiempoSegundos: number
+  pistaUsada: boolean
+  fechaJuego: Date
+}
+
+export interface HangmanStats {
+  partidasJugadas: number
+  partidasGanadas: number
+  rachaActual: number
+  mejorRacha: number
+  totalPistasUsadas: number
+  promedioPuntaje: number
+}

@@ -7,11 +7,11 @@
           <div class="flex items-center">
             <img
               src="/src/assets/logo.png"
-              alt="Daily win Logo"
+              alt="MyRank Logo"
               class="h-24 w-auto"
             />
             <h1 class="text-2xl font-bold bg-gradient-to-r from-dorado to-dorado-oscuro bg-clip-text text-transparent">
-              Daily win
+              MyRank
             </h1>
           </div>
 
@@ -129,12 +129,20 @@
               </div>
 
               <!-- Ahorcado -->
-              <div class="group p-6 bg-gradient-to-br from-amber-50 to-transparent rounded-xl border-2 border-amber-200 hover:border-amber-400 transition-all duration-300 hover:shadow-lg cursor-pointer">
+              <router-link
+                to="/juegos/ahorcado"
+                class="group p-6 bg-gradient-to-br from-amber-50 to-transparent rounded-xl border-2 border-amber-200 hover:border-amber-400 transition-all duration-300 hover:shadow-lg cursor-pointer block"
+              >
                 <img src="../assets/rope-svgrepo-com.svg" alt="ahorcado"  class="w-12 h-12 mb-3 ml-3 group-hover:scale-110 transition-transform"/>
                 <h4 class="font-bold text-texto-principal mb-2">Ahorcado</h4>
                 <p class="text-sm text-texto-secundario mb-3">Letra por letra</p>
-                <div class="text-xs font-medium text-amber-600">Próximamente</div>
-              </div>
+                <div class="inline-flex items-center text-xs font-medium text-amber-600">
+                  ¡Jugar ahora!
+                  <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </router-link>
             </div>
           </BaseCard>
 
@@ -238,17 +246,17 @@
             <div class="flex items-center space-x-3">
               <img
                 src="/src/assets/logo.png"
-                alt="Daily win Logo"
+                alt="MyRank Logo"
                 class="h-10 w-auto"
               />
-              <h3 class="text-lg font-bold bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">Daily win ltda.</h3>
+              <h3 class="text-lg font-bold bg-gradient-to-r from-dorado-oscuro to-dorado bg-clip-text text-transparent">MyRank ltda.</h3>
             </div>
             <p class="text-texto-secundario text-sm leading-relaxed">
               Plataforma de sorteos transparentes y seguros.
               Participa en sorteos con total confianza y transparencia.
             </p>
             <div class="text-xs text-texto-secundario">
-              © 2025 Daily win. Todos los derechos reservados.
+              © 2025 MyRank. Todos los derechos reservados.
             </div>
           </div>
 
@@ -288,10 +296,10 @@
                 </div>
                 <div>
                   <a
-                    href="mailto:contacto@quorumluxe.cl"
+                    href="mailto:contacto@myrank.cl"
                     class="text-texto-secundario hover:text-dorado transition-colors duration-200 text-sm font-medium"
                   >
-                    contacto@quorumluxe.cl
+                    contacto@myrank.cl
                   </a>
                   <div class="text-xs text-texto-secundario">Email</div>
                 </div>
