@@ -256,7 +256,7 @@ const compartirResultado = () => {
   if (!gameState.value) return
 
   const emoji = gano.value ? '🎉' : '😔'
-  const texto = `${emoji} Palabra del Día\nIntentos: ${gameState.value.intentoActual}/${gameState.value.intentosMaximos}\nPuntos: ${gameState.value.puntaje}\n\n¡Juega tú también en QuorumLuxe!`
+  const texto = `${emoji} Palabra del Día\nIntentos: ${gameState.value.intentoActual}/${gameState.value.intentosMaximos}\nPuntos: ${gameState.value.puntaje}\n\n¡Juega tú también en MyRank.cl!`
 
   if (navigator.share) {
     navigator.share({
