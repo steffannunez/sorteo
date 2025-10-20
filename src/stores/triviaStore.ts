@@ -27,6 +27,7 @@ export const useTriviaStore = defineStore('trivia', {
     selectedAnswer: null as string | null,
     showingResult: false, // Mostrar resultado de la pregunta actual
     lastAnswerCorrect: false,
+    usedQuestions: [] as string[], // Preguntas ya mostradas en la partida actual
   }),
 
   getters: {
@@ -108,6 +109,7 @@ export const useTriviaStore = defineStore('trivia', {
 
         this.selectedAnswer = null
         this.showingResult = false
+        this.usedQuestions = [] // Limpiar preguntas usadas al iniciar nueva partida
 
         // Cargar primera pregunta
         await this.cargarSiguientePregunta()
@@ -138,10 +140,13 @@ export const useTriviaStore = defineStore('trivia', {
         // Obtener dificultad actual
         const difficulty = this.currentDifficulty
 
-        // Cargar pregunta de la API
-        const question = await triviaService.fetchQuestion(difficulty)
+        // Cargar pregunta de la API, pasando las preguntas ya usadas
+        const question = await triviaService.fetchQuestion(difficulty, this.usedQuestions)
 
         this.gameState.currentQuestion = question
+
+        // Agregar la pregunta al registro de preguntas usadas
+        this.usedQuestions.push(question.question)
 
         console.log(`❓ Pregunta ${this.gameState.questionNumber} cargada (${difficulty})`)
       } catch (error) {
@@ -256,6 +261,7 @@ export const useTriviaStore = defineStore('trivia', {
       this.selectedAnswer = null
       this.showingResult = false
       this.error = null
+      this.usedQuestions = [] // Limpiar preguntas usadas al reiniciar
     },
 
     clearError() {

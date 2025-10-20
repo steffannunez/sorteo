@@ -167,15 +167,25 @@ export class TriviaService {
 
   /**
    * Obtiene una pregunta de trivia en español
+   * @param difficulty - Dificultad de la pregunta
+   * @param usedQuestions - Array de preguntas ya mostradas (para evitar repeticiones)
    */
-  async fetchQuestion(difficulty: TriviaDifficulty): Promise<TriviaQuestionDisplay> {
+  async fetchQuestion(difficulty: TriviaDifficulty, usedQuestions: string[] = []): Promise<TriviaQuestionDisplay> {
     try {
       // Obtener preguntas de la dificultad solicitada
       const questions = this.preguntasEspanol[difficulty]
 
-      // Seleccionar una pregunta aleatoria
-      const randomIndex = Math.floor(Math.random() * questions.length)
-      const selectedQuestion = questions[randomIndex]
+      // Filtrar preguntas que no se han mostrado aún
+      const availableQuestions = questions.filter(
+        q => !usedQuestions.includes(q.question)
+      )
+
+      // Si no hay preguntas disponibles (todas fueron usadas), resetear y usar todas
+      const questionsToUse = availableQuestions.length > 0 ? availableQuestions : questions
+
+      // Seleccionar una pregunta aleatoria de las disponibles
+      const randomIndex = Math.floor(Math.random() * questionsToUse.length)
+      const selectedQuestion = questionsToUse[randomIndex]
 
       const question: TriviaQuestion = {
         id: crypto.randomUUID(),
