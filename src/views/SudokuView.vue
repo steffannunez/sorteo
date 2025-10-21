@@ -113,6 +113,28 @@
             </BaseButton>
           </div>
 
+          <!-- Tutorial -->
+          <GameTutorial
+            :rules="[
+              { text: 'Rellena la cuadrícula 9×9 con números del 1 al 9', icon: '🔢' },
+              { text: 'Cada fila debe contener los números del 1 al 9 sin repetir', icon: '➡️' },
+              { text: 'Cada columna debe contener los números del 1 al 9 sin repetir', icon: '⬇️' },
+              { text: 'Cada subcuadrícula 3×3 debe contener los números del 1 al 9 sin repetir', icon: '⬛' },
+              { text: 'Los números iniciales no se pueden modificar', icon: '🔒' },
+              { text: 'Usa el modo lápiz para marcar números posibles', icon: '✏️' }
+            ]"
+            :tips="[
+              'Usa Ctrl+Z/Y para deshacer/rehacer movimientos',
+              'Presiona números del 1-9 en el teclado para colocarlos',
+              'Presiona P para activar/desactivar el modo lápiz',
+              'Presiona Delete o Backspace para borrar una celda',
+              'Las pistas reducen tu puntuación (-5 puntos cada una)',
+              'Completa el sudoku rápido para ganar bonos de tiempo',
+              'Cada error te quita 2 puntos de tu puntuación final'
+            ]"
+            :start-collapsed="true"
+          />
+
           <!-- Modal de juego completado -->
           <div v-if="gameState?.isComplete && scoreBreakdown" class="completion-modal">
             <div class="modal-content">
@@ -193,6 +215,7 @@ import SudokuBoard from '@/components/games/sudoku/SudokuBoard.vue'
 import SudokuControls from '@/components/games/sudoku/SudokuControls.vue'
 import SudokuStats from '@/components/games/sudoku/SudokuStats.vue'
 import SudokuDifficulty from '@/components/games/sudoku/SudokuDifficulty.vue'
+import GameTutorial from '@/components/ui/GameTutorial.vue'
 import type { SudokuDifficulty as Difficulty } from '@/types'
 
 const sudokuStore = useSudokuStore()

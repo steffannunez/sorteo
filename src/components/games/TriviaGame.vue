@@ -181,6 +181,24 @@
       <div v-if="!showingResult" class="text-center text-sm text-texto-secundario">
         Respuesta correcta: <span class="font-bold text-green-600">+{{ pointsForCorrectAnswer }} puntos</span>
       </div>
+
+      <!-- Tutorial -->
+      <GameTutorial
+        :rules="[
+          { text: 'Responde preguntas de trivia de dificultad progresiva', icon: '🎯' },
+          { text: 'Preguntas 1-3: +10 pts | 4-7: +20 pts | 8-10: +30 pts | 11+: +50 pts', icon: '⭐' },
+          { text: 'Puedes saltar preguntas, pero cada salto cuesta más (-5, -15, -45, -135...)', icon: '⏭️' },
+          { text: 'Una respuesta incorrecta termina el juego', icon: '❌' },
+          { text: '¡Acumula la mayor cantidad de puntos posible!', icon: '🏆' }
+        ]"
+        :tips="[
+          'Lee las preguntas con cuidado antes de responder',
+          'Usa los saltos estratégicamente - el costo aumenta exponencialmente',
+          'Las preguntas más difíciles otorgan más puntos',
+          'No hay límite de tiempo, así que piensa bien tu respuesta'
+        ]"
+        :start-collapsed="true"
+      />
     </div>
 
     <!-- Game Over -->
@@ -241,6 +259,7 @@ import { useTriviaStore } from '@/stores/triviaStore'
 import { useAuthStore } from '@/stores/authStore'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseCard from '@/components/ui/BaseCard.vue'
+import GameTutorial from '@/components/ui/GameTutorial.vue'
 
 const triviaStore = useTriviaStore()
 const authStore = useAuthStore()

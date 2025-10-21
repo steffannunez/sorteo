@@ -301,6 +301,26 @@
           {{ tecla.letra }}
         </button>
       </div>
+
+      <!-- Tutorial -->
+      <GameTutorial
+        :rules="[
+          { text: 'Adivina la palabra letra por letra antes de completar el ahorcado', icon: '🎯' },
+          { text: 'Tienes un máximo de 6 intentos fallidos', icon: '❤️' },
+          { text: 'Cada letra incorrecta dibuja una parte del ahorcado', icon: '✏️' },
+          { text: 'Puedes ver una pista, pero reducirá tu puntuación en 30%', icon: '💡' },
+          { text: 'Usa el teclado físico o virtual para seleccionar letras', icon: '⌨️' },
+          { text: 'Completa la palabra antes de agotar tus intentos para ganar', icon: '🏆' }
+        ]"
+        :tips="[
+          'Comienza con las vocales más comunes (A, E, I, O, U)',
+          'Luego prueba consonantes frecuentes como R, S, N, L, T',
+          'Observa la longitud de la palabra y la categoría para tener pistas',
+          'Usa el teclado físico para mayor velocidad',
+          'Solo usa la pista si realmente la necesitas - penaliza mucho'
+        ]"
+        :start-collapsed="true"
+      />
     </div>
 
     <!-- Estado inicial (sin juego cargado) -->
@@ -329,6 +349,7 @@ import { useHangmanStore } from '@/stores/hangmanStore'
 import { useAuthStore } from '@/stores/authStore'
 import BaseCard from '@/components/ui/BaseCard.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import GameTutorial from '@/components/ui/GameTutorial.vue'
 
 defineEmits<{
   'volver': []
