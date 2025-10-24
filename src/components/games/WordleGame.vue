@@ -157,6 +157,27 @@
         @enter="handleEnter"
         @backspace="handleBackspace"
       />
+
+      <!-- Tutorial -->
+      <GameTutorial
+        :rules="[
+          { text: 'Adivina la palabra del día en 6 intentos o menos', icon: '🎯' },
+          { text: 'Cada intento debe ser una palabra válida de 5 letras', icon: '📝' },
+          { text: 'Verde: la letra está en la palabra y en la posición correcta', icon: '🟩' },
+          { text: 'Amarillo: la letra está en la palabra pero en otra posición', icon: '🟨' },
+          { text: 'Gris: la letra no está en la palabra', icon: '⬜' },
+          { text: 'Una nueva palabra cada día - ¡compite con tus amigos!', icon: '📅' }
+        ]"
+        :tips="[
+          'Empieza con palabras que tengan vocales comunes (A, E, I, O, U)',
+          'Usa las primeras palabras para descubrir las letras de la palabra',
+          'Presta atención a las letras amarillas - están en la palabra pero mal ubicadas',
+          'Las letras grises ya puedes descartarlas completamente',
+          'Usa el teclado físico para jugar más rápido',
+          'Menos intentos usados = más puntos ganados'
+        ]"
+        :start-collapsed="true"
+      />
     </div>
 
     <!-- Estado inicial (sin juego cargado) -->
@@ -187,6 +208,7 @@ import WordleBoard from './WordleBoard.vue'
 import WordleKeyboard from './WordleKeyboard.vue'
 import BaseCard from '@/components/ui/BaseCard.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import GameTutorial from '@/components/ui/GameTutorial.vue'
 
 defineEmits<{
   'volver': []
@@ -256,7 +278,7 @@ const compartirResultado = () => {
   if (!gameState.value) return
 
   const emoji = gano.value ? '🎉' : '😔'
-  const texto = `${emoji} Palabra del Día\nIntentos: ${gameState.value.intentoActual}/${gameState.value.intentosMaximos}\nPuntos: ${gameState.value.puntaje}\n\n¡Juega tú también en QuorumLuxe!`
+  const texto = `${emoji} Palabra del Día\nIntentos: ${gameState.value.intentoActual}/${gameState.value.intentosMaximos}\nPuntos: ${gameState.value.puntaje}\n\n¡Juega tú también en MyRank.cl!`
 
   if (navigator.share) {
     navigator.share({

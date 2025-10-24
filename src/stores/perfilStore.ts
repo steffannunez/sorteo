@@ -61,6 +61,15 @@ export const usePerfilStore = defineStore('perfil', {
         new Date(b.fechaCompra).getTime() - new Date(a.fechaCompra).getTime()
       )
     },
+
+    // Obtener puntos actuales
+    puntosActuales: (state) => state.userStats.puntosActuales,
+
+    // Obtener perfil del usuario
+    userProfile() {
+      const authStore = useAuthStore()
+      return authStore.user
+    },
   },
 
   actions: {
@@ -272,6 +281,37 @@ export const usePerfilStore = defineStore('perfil', {
       } finally {
         this.loading = false
       }
+    },
+
+    // Actualizar puntos del usuario (suma o resta)
+    async actualizarPuntos(puntos: number) {
+      // Actualizar puntos actuales
+      this.userStats.puntosActuales += puntos
+
+      // Si son puntos positivos, actualizar históricos
+      if (puntos > 0) {
+        this.userStats.puntosHistoricos += puntos
+
+        // Actualizar record mensual si es necesario
+        if (this.userStats.puntosActuales > this.userStats.recordPuntosMensuales) {
+          this.userStats.recordPuntosMensuales = this.userStats.puntosActuales
+        }
+      }
+
+      // Asegurar que los puntos actuales no sean negativos
+      if (this.userStats.puntosActuales < 0) {
+        this.userStats.puntosActuales = 0
+      }
+
+      console.log(`💰 Puntos actualizados: ${puntos > 0 ? '+' : ''}${puntos} | Total: ${this.userStats.puntosActuales}`)
+
+      // TODO: Cuando esté implementado el backend, hacer la petición a la API
+      // const authStore = useAuthStore()
+      // if (authStore.user) {
+      //   const apiClient = new ApiClient()
+      //   const perfilService = new PerfilService(apiClient)
+      //   await perfilService.updatePuntos(authStore.user.id, puntos)
+      // }
     },
 
     // Cargar datos de prueba para desarrollo

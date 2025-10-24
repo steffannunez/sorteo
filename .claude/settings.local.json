@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree -L 3 \"C:/Users/INTEL i9-11900KF/Desktop/proyectitos/sorteo/src\" -I \"node_modules\" --dirsfirst)",
+      "Bash(npm run type-check)",
+      "Bash(npm run build)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -233,7 +233,7 @@ export interface TopPlayers {
 export interface GameAttempt {
   id: string
   userId: string
-  gameType: 'wordle' | 'contexto' | 'ahorcado'
+  gameType: 'wordle' | 'sudoku' | 'ahorcado' | 'trivia'
   fecha: Date
   puntajeObtenido: number
   intentosUsados: number
@@ -242,7 +242,7 @@ export interface GameAttempt {
 }
 
 export interface DailyGameStatus {
-  gameType: 'wordle' | 'contexto' | 'ahorcado'
+  gameType: 'wordle' | 'sudoku' | 'ahorcado' | 'trivia'
   intentoGratisUsado: boolean
   intentosExtraUsados: number
   ultimoIntento?: Date
@@ -305,4 +305,176 @@ export interface WordleGameResult {
   puntaje: number
   tiempoSegundos: number
   fechaJuego: Date
+}
+
+// ============================================
+// TIPOS ESPECÍFICOS PARA SUDOKU
+// ============================================
+
+export type SudokuDifficulty = 'easy' | 'medium' | 'hard'
+
+export interface SudokuCell {
+  value: number // 0 para vacío, 1-9 para números
+  isOriginal: boolean // true si es parte del puzzle inicial
+  isValid: boolean // validación en tiempo real
+  notes: number[] // números anotados en modo lápiz
+}
+
+export interface SudokuBoard {
+  cells: SudokuCell[][] // matriz 9x9
+  solution: number[][] // solución completa
+}
+
+export interface SudokuGameState {
+  gameId: string | null
+  board: SudokuBoard
+  difficulty: SudokuDifficulty
+  startTime: Date | null
+  endTime: Date | null
+  elapsedTime: number // en segundos
+  errors: number
+  hintsUsed: number
+  isComplete: boolean
+  isPaused: boolean
+  pencilMode: boolean // modo lápiz activado
+}
+
+export interface SudokuMove {
+  row: number
+  col: number
+  previousValue: number
+  newValue: number
+  timestamp: Date
+}
+
+export interface SudokuGameResult {
+  gameId: string
+  userId: string
+  difficulty: SudokuDifficulty
+  completed: boolean
+  timeSeconds: number
+  errors: number
+  hintsUsed: number
+  basePoints: number // puntos base según dificultad
+  errorPenalty: number // penalización por errores
+  hintPenalty: number // penalización por pistas
+  timebonus: number // bonus por tiempo
+  finalScore: number // puntaje final
+  fechaJuego: Date
+}
+
+export interface SudokuStats {
+  partidasJugadas: number
+  partidasCompletadas: number
+  mejorTiempo: Record<SudokuDifficulty, number> // mejor tiempo por dificultad
+  promedioTiempo: Record<SudokuDifficulty, number>
+  totalPuntos: number
+  promedioErrores: number
+  tasaCompletado: number // porcentaje de juegos completados
+}
+
+// ============================================
+// TIPOS ESPECÍFICOS PARA AHORCADO (HANGMAN)
+// ============================================
+
+export interface DailyHangmanWord {
+  id: string
+  palabra: string
+  pista: string
+  fecha: string // YYYY-MM-DD
+  dificultad: 'facil' | 'media' | 'dificil'
+  categoria: string | null
+}
+
+export interface HangmanGameState {
+  gameId: string | null
+  dailyWordId: string
+  palabraSecreta: string
+  palabraOculta: string[] // array con letras o '_'
+  letrasAdivinadas: string[] // letras correctas adivinadas
+  letrasIncorrectas: string[] // letras incorrectas
+  intentosMaximos: number // cantidad de partes del ahorcado (típicamente 6)
+  intentosRestantes: number
+  estadoJuego: 'jugando' | 'ganado' | 'perdido'
+  puntaje: number
+  tiempoInicio: Date | null
+  tiempoFin: Date | null
+  pistaUsada: boolean // si usó la pista (reduce puntos)
+}
+
+export interface HangmanGameResult {
+  gameId: string
+  userId: string
+  dailyWordId: string
+  intentosUsados: number
+  completado: boolean
+  ganado: boolean
+  puntaje: number
+  tiempoSegundos: number
+  pistaUsada: boolean
+  fechaJuego: Date
+}
+
+export interface HangmanStats {
+  partidasJugadas: number
+  partidasGanadas: number
+  rachaActual: number
+  mejorRacha: number
+  totalPistasUsadas: number
+  promedioPuntaje: number
+}
+
+// ============================================
+// TIPOS ESPECÍFICOS PARA TRIVIA
+// ============================================
+
+export type TriviaDifficulty = 'easy' | 'medium' | 'hard'
+
+export interface TriviaQuestion {
+  id: string
+  question: string
+  correct_answer: string
+  incorrect_answers: string[]
+  category: string
+  difficulty: TriviaDifficulty
+  type: string
+}
+
+export interface TriviaQuestionDisplay {
+  question: string
+  options: string[] // 4 opciones mezcladas
+  correctAnswer: string
+  difficulty: TriviaDifficulty
+  category: string
+}
+
+export interface TriviaGameState {
+  gameId: string | null
+  currentQuestion: TriviaQuestionDisplay | null
+  questionNumber: number // número de pregunta actual (1-based)
+  totalScore: number
+  skipsUsed: number // cantidad de saltos usados
+  gameStatus: 'playing' | 'game_over' | 'not_started'
+  tiempoInicio: Date | null
+  tiempoFin: Date | null
+  questionsAnswered: number // preguntas correctamente respondidas
+}
+
+export interface TriviaGameResult {
+  gameId: string
+  userId: string
+  questionsAnswered: number
+  totalScore: number
+  skipsUsed: number
+  timeSeconds: number
+  highestDifficulty: TriviaDifficulty
+  fechaJuego: Date
+}
+
+export interface TriviaStats {
+  partidasJugadas: number
+  mejorPuntaje: number
+  promedioPreguntas: number // promedio de preguntas respondidas
+  promedioSaltos: number
+  totalPuntosAcumulados: number
 }
